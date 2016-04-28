@@ -1,0 +1,83 @@
+{% extends "signed_in_base.html" %}
+
+
+{% block content %}
+
+<div class="container" style="margin-bottom: 100px;">
+
+    <div>
+
+        {{ form.errors }}
+    </div>
+
+<form class="form-horizontal col-lg-7 col-md-7" id="create_request_form" role="form" method="post" action="{% url 'edit_view' instance.slug%}">
+
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="control-label" for="id_type">Type</label><br/>
+            <select class="form-control" id="id_type" name="type">
+                <option value="" selected="selected">Select Project Type</option>
+                <option
+                        {% if instance.type.slug == 'websites-it-and-software'  %}selected='selected'{% endif %}
+                        value="websites-it-and-software">Websites IT &amp; Software
+                </option>
+                 <option
+                        {% if instance.type.slug == 'mobile'  %}selected='selected'{% endif %}
+                        value="mobile">Mobile
+                </option>
+
+                <option
+                        {% if instance.type.slug == 'graphics-design'  %}selected='selected'{% endif %}
+                        value="graphics-design">Graphics Design
+                </option>
+                <option
+                        {% if instance.type.slug == 'writing'  %}selected='selected'{% endif %}
+                        value="writing">Writing
+                </option>
+                <option
+                        {% if instance.type.slug == 'data-entry'  %}selected='selected'{% endif %}
+                        value="writing">Data Entry
+                </option>
+            </select>
+             <br/>
+        </div>
+
+        <div class="form-group">
+            <input value="{{ instance.title }}" style="font-size:20px;height: 50px;font-family: exo;font-weight:900" id="id_title" class="form-control" maxlength="200" name="title" placeholder="I'm Requesting" type="text"><br>
+        </div>
+
+        <div class="form-group">
+                  <label class="control-label" for="id_description">Description</label>
+                    <br/>
+                  <textarea class="form-control" cols="40" id="id_description" name="description" rows="10">{{ instance.description }}</textarea>
+                  <br/>
+         </div>
+
+        <div>
+            {% if instance.skills.all %}
+                {% for skill in instance.skills.all %}
+                        <li class="tag">{{skill.name}}</li>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group">
+              <select multiple="multiple" class="form-control tags" id="id_skills" name="skills"></select>
+        </div>
+
+
+        <div class="panel-body  ">
+            <a  href="{%  url 'project_detail' instance.slug%}" class="btn btn-danger" type="submit" >Cancel</a>
+            <input  style="float: right" class="btn btn-info" type="submit" value="Update" />
+      </div>
+
+
+</form>
+
+</div>
+
+
+<script>
+
+
+</script>
+{% endblock %}

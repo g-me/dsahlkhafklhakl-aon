@@ -1,0 +1,43 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static "app/vendor/bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "app/css/style.css" %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'app/vendor/jquery.js' %}"></script>
+    <script src="{% static 'app/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'app/js/date.js' %}"></script>
+    <script src="{% static 'app/js/app.js' %}"></script>
+
+
+    <link rel="stylesheet" href="{% static "app/css/animate.css" %}">
+    <link rel="stylesheet" href="{% static "app/css/select2.min.css" %}">
+	<link rel="stylesheet" href="{% static "app/css/icomoon.css" %}">
+	<link rel="stylesheet" href="{% static "app/css/magnific-popup.css" %}">
+	<link rel="stylesheet" href="{% static "app/css/owl.carousel.min.css" %}">
+	<link rel="stylesheet" href="{% static "app/css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "app/css/cards.css" %}">
+    <link href="{% static "app/css/app_style.css" %}" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+
+        <a href="{% url 'index' %}" class="membership-logo" style="color:black">AON</a>
+
+        {% block content %}
+
+
+        {% endblock %}
+
+
+    {% include 'footer.html' %}
+
+    <script src="{% static 'app/js/select2.full.min.js' %}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+
+
+
+{% extends "signed_in_base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="panel col-md-8" style="margin-bottom: 150px;">
+
+
+
+        {% if found_entries %}
+            Search results for "{{ query_string }}"
+
+              {% for project in found_entries %}
+
+                   <a href="{% url 'project_detail' project.slug %}" >
+                        <div style="margin-top:12px;padding:6px 20px;border-radius: 4px; background-color: rgba(128, 128, 128, 0.28)">
+                                <a class="dashboard-project-title" href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
+                                {% load app_tags_filters %}
+                                <div>{{ project.created |date }} <span class="tag" style="color: #FFF;float: right">{{ project.status | display_status }}</span></div>
+                        </div>
+                    </a>
+
+                {% endfor %}
+
+        {% else %}
+            No results found for  "{{ query_string }}"
+        {% endif %}
+
+
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,270 @@
+{% extends "signed_in_base.html" %}
+
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row" style="margin-bottom: 25px;">
+
+        <div class="col-sm-4">
+			<div class="profile-sidebar" style="background: #F8F8F8;color: #41475E;border: 1px solid #E5E6E7">
+				<div class="row profile-user_pic">
+
+                    {% load avatar_tags %}
+                    <div lass="col-xs-6 col-xs-offset-3" style="padding-left:100px; margin-bottom: 10px;">
+                        {% avatar data.profile.user 150 class="img-circle img-responsive" id="user_avatar" %}
+                    </div>
+{#					<img class="col-xs-6 col-xs-offset-3" style="padding-left: 0px;padding-right: 0px; margin-bottom: 10px;border: 3px solid #40465E" src="{{ STATIC_URL }}/static/app/images/default.jpg"  alt="">#}
+				</div>
+
+				<div class="profile-usertitle">
+					<div class="">
+						{% if  data.profile.user.first_name and  data.profile.user.last_name %}
+                            <h3 style="margin: 0px">{{  data.profile.user.first_name   }}  {{  data.profile.user.last_name   }}</h3>
+                        {% endif %}
+
+                        {% if data.profile.user.username  %}
+                            {{  data.profile.user.username   }}<br>
+                        {% endif %}
+
+                        {% if data.profile.career  %}
+						    {{  data.profile.career   }} <br>
+                        {% endif %}
+
+					</div>
+
+				</div>
+
+                <div style="text-align: center">
+                        <div class="ntag">
+                            <div class="profile_badge">{{ data.num_requests }} </div>
+                            <div class="profile_badge_text">Request</div>
+                        </div>
+
+                        <div class="ntag">
+
+                            <div class="profile_badge">{{  data.profile.reputation }}</div>
+                            <div class="profile_badge_text">Reputations</div>
+
+                        </div>
+
+                        <div class="ntag">
+                            <div class="profile_badge">{{ data.num_offers }}</div>
+                            <div class="profile_badge_text">Offers</div>
+                        </div>
+                </div>
+
+                {% if data.profile.user == user %}
+			    	<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+                            <a href="{% url 'user_profile'  user.username %}">
+							    <i class="glyphicon glyphicon-home"></i>
+							Overview </a>
+						</li>
+						<li>
+							<a href="{% url 'edit_account' %}">
+							<i class="glyphicon glyphicon-user"></i>
+							Account Settings </a>
+						</li>
+						<li>
+                         <a href="{% url 'edit_profile'%}">
+							<i class="glyphicon glyphicon-pencil"></i>
+							Edit Profile </a>
+						</li>
+                        <li>
+							<a href="{% url 'auth_password_change' %}">
+							<i class="glyphicon glyphicon-lock"></i>
+							Change Password
+                            </a>
+						</li>
+					</ul>
+				</div>
+                {% endif %}
+			</div>
+		</div>
+
+		<div class="col-sm-8">
+            <div class="profile-content" >
+
+                {# ABOUT#}
+                <div style="padding: 10px;border-radius:5px ">
+                        {% if  data.profile.about  %}
+                            {{   data.profile.about }}
+                        {% else %}
+                            {% if user == data.profile.user %}
+                                    (Your about me is currently blank. )
+                            {% else%}
+                                    Apparently, this user prefers to keep an air of mystery about them.
+                            {% endif %}
+                        {% endif %}
+                </div>
+                {# END ABOUT#}
+
+            <div style="padding: 15px;margin-bottom: 15px;">
+                {% if data.profile.company %}
+                    <div>
+                        <i class="icon icon-location"></i> {{ data.profile.company }}
+                    </div>
+                {% endif %}
+
+                {% if data.profile.location %}
+                    <div>
+                        <i class="icon icon-address"></i> {{ data.profile.location }}
+                    </div>
+                {% endif %}
+
+                  <div>
+                      <i class="icon icon-clock2"></i> Last seen {{ data.profile.user.last_login | timesince }} ago
+                  </div>
+
+                  <div>
+                        <i class="icon icon-calendar"></i> Joined on {{ data.profile.user.date_joined | date }}
+                  </div>
+
+                {% if data.profile.website  %}
+                    <div >
+                        <a style=""  href="{{  data.profile.website  }}" >
+                            <i class="icon icon-link"></i> {{   data.profile.website }}
+                         </a>
+                    </div>
+                {% endif %}
+
+            </div>
+
+                {# NETWORK#}
+                <div style=" margin-bottom: 150px;">
+
+                    {% if data.profile.stackoverflow_account %}
+                        <a href="{{  data.profile.stackoverflow_account }}" class="col-sm-6 profile_social_btn">
+                         <div style="background-color: orange" class="profile_social_net_btn">
+                             <div style="color: #FFF;font-size: 25px;" class="icon icon-stack-overflow">
+                             </div>
+                             <div style="margin-left: 35px;position: relative;bottom:35px">
+                                <div style="font-size: 15px;">Stackoverflow</div>
+                                <div style="font-size: 14px;position: relative;bottom: 10px;">
+                                    {{   data.profile.stackoverflow_account | get_user_name }}
+                                </div>
+
+                             </div>
+                         </div>
+                    </a>
+
+                    {% endif %}
+
+                    {% if data.profile.twitter_account %}
+
+                        <a href="{{  data.profile.twitter_account }}" class="col-sm-6 profile_social_btn">
+                            <div style="background-color: #589fff" class="profile_social_net_btn">
+                                <div style="color: #FFF;font-size: 25px;" class="icon icon-twitter"></div>
+                                <div style="margin-left: 35px;position: relative;bottom:35px">
+                                    <div style="font-size: 15px;">Twitter</div>
+                                    <div style="font-size: 14px;position: relative;bottom: 10px;;">{{   data.profile.twitter_account | get_user_name }}</div>
+
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %}
+
+                    {% if data.profile.github_account %}
+
+                        <a href="{{  data.profile.github_account }}" class="col-sm-6 profile_social_btn">
+                            <div style="background-color: rgba(0, 0, 0, 0.74)" class="profile_social_net_btn">
+                                <div style="color: #FFF;font-size: 25px;" class="icon icon-github"></div>
+                                <div style="margin-left: 35px;position: relative;bottom:35px">
+                                    <div style="font-size: 15px;">Github</div>
+                                    <div style="font-size: 14px;position: relative;bottom: 10px;;">{{   data.profile.github_account | get_user_name }}</div>
+
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %}
+
+                    {% if data.profile.google_plus_account %}
+
+                        <a href="{{  data.profile.google_plus_account }}" class="col-sm-6 profile_social_btn">
+                            <div style="background-color: #ff7151" class="profile_social_net_btn">
+                                <div style="color: #FFF;font-size: 25px;" class="icon icon-google-plus"></div>
+                                <div style="margin-left: 35px;position: relative;bottom:35px">
+                                    <div style="font-size: 15px;">Google Plus</div>
+                                    <div style="font-size: 14px;position: relative;bottom: 10px;;">{{   data.profile.google_plus_account | get_user_name }}</div>
+
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %}
+
+
+                </div>
+                {# END NETWORK#}
+
+                {% if data.skills %}
+                    <div class="app_panel">
+                        <h3 class="app_panel_heading">Skills</h3>
+                        {% for user_skill in data.skills %}
+                                <div class="profile_skill_tag">{{ user_skill.name }}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                {% endif %}
+
+
+             </div>
+		</div>
+
+	</div>
+
+    <div>
+
+
+        {% if data.offers %}
+            <div class="col-md-5 app_panel" >
+                <h3  class="app_panel_heading">Offers</h3>
+                {% for offer in data.offers %}
+                    {% load app_tags_filters %}
+                      <a href="{% url 'project_detail' offer.project.slug %}" >
+                        <div style="margin-top:12px;padding:6px 20px;border-radius: 4px; border-bottom: solid 1px #D2D3D5">
+                                <a class="dashboard-project-title" href="{% url 'project_detail' offer.project.slug %}">{{ offer.project.title | truncatechars:"35" }}</a>
+                                <div>{{ offer.project.created |date }} <span class="tag" style="color: #FFF;float: right">{{ offer.project.status | display_status }}</span></div>
+                        </div>
+                      </a>
+                {% endfor %}
+            </div>
+
+        {% endif %}
+
+
+        {% if data.requests and data.offers%}
+            <div class="col-md-5 col-md-offset-2 app_panel" >
+             <h3 class="app_panel_heading">Requests</h3>
+                    {% for project in data.requests %}
+                        <a href="{% url 'project_detail' project.slug %}" >
+                            <div style="margin-top:12px;padding:6px 20px;border-radius: 4px;border-bottom: solid 1px #D2D3D5">
+                                    <a class="dashboard-project-title" href="{% url 'project_detail' project.slug %}">{{ project.title | truncatechars:"35" }}</a>
+                                    <div>{{ project.created |date }} <span class="tag" style="color: #FFF;float: right">{{ project.status | display_status }}</span></div>
+                            </div>
+                        </a>
+                    {% endfor %}
+            </div>
+        {% elif data.requests and not data.offers%}
+            <div class="col-md-5 app_panel">
+             <h3  class="app_panel_heading">Requests</h3>
+                    {% for project in data.requests %}
+                        <a href="{% url 'project_detail' project.slug %}" >
+                            <div style="margin-top:12px;padding:6px 20px;border-radius: 4px; ">
+                                    <a class="dashboard-project-title" href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
+                                    <div>{{ project.created |date }} <span class="tag" style="color: #FFF;float: right">{{ project.status | display_status }}</span></div>
+                            </div>
+                        </a>
+                    {% endfor %}
+
+            </div>
+        {% endif %}
+
+
+    </div>
+</div>
+
+
+{% endblock %}

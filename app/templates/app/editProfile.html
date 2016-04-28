@@ -1,0 +1,137 @@
+{% extends "signed_in_base.html" %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row" style="margin-bottom: 25px;">
+
+        <div class="col-sm-4">
+			<div class="profile-sidebar" style="background: #CFD0D4;color: #41475E;">
+
+				<div class="profile-userpic">
+
+                  {% load avatar_tags %}
+{#                    <a href="{% url 'avatar_change' %}"1> <span style="color:gray" class="glyphicon glyphicon-pencil"></span> </a>#}
+                    <div class="col-xs-6 col-xs-offset-3" style="padding-left:100px; margin-bottom: 10px;">
+                        {% avatar data.profile.user 150 class="img-circle img-responsive" id="user_avatar" %}
+                    </div>
+
+				</div>
+
+                <!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="">
+						<h3 style="margin: 0px">{{  data.profile.user.first_name   }}  {{  data.profile.user.last_name   }}</h3>
+						{{  data.profile.user.username   }}<br>
+						{{  data.profile.career   }} <br>
+
+					</div>
+
+				</div>
+                <div>
+                        <div class="ntag">
+                            {{  data.profile.reputation }} Reputations
+
+                        </div>
+
+                        <div class="ntag">
+                               {{ data.num_requests }} Request
+                        </div>
+
+                        <div class="ntag">
+                              {{ data.num_offers }} Offers
+
+                        </div>
+                </div>
+
+                {% if data.profile.user == user %}
+			    	<div class="profile-usermenu">
+                        <ul class="nav">
+                            <li >
+                                <a href="{% url 'user_profile'  user.username %}">
+                                    <i class="glyphicon glyphicon-home"></i>
+                                Overview </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'edit_account' %}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Account Settings </a>
+                            </li>
+                            <li class="active">
+                             <a href="{% url 'edit_profile'%}">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                                Edit Profile </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'auth_password_change' %}">
+                                <i class="glyphicon glyphicon-lock"></i>
+                                Change Password
+                                </a>
+                            </li>
+					    </ul>
+    				</div>
+                {% endif %}
+			</div>
+		</div>
+
+		<div class="col-sm-8">
+
+                <form action="{% url 'edit_profile' %}" method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                            <textarea name="about" id="" class="form-control"    placeholder="Your Bio"  cols="30" rows="10">{{ data.profile.about }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input value="{{ data.profile.company }}" placeholder="Company" name="company" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input value="{{ data.profile.location }}" placeholder="Location" name='location' type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input value="{{  data.profile.website  }}" placeholder="Website" name="website" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input value="{{  data.profile.stackoverflow_account  }}" name="stackoverflow_account" placeholder="Stackoverflow" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input value="{{  data.profile.twitter_account  }}"  name="twitter_account" placeholder="Twitter" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input value="{{  data.profile.github_account  }}" name="github_account" placeholder="Github" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input value="{{  data.profile.google_plus_account  }}" name="google_plus_account" placeholder="Google Plus" type="text" class="form-control">
+                    </div>
+
+                    <div>
+                        {% if data.skills %}
+                            {% for skill in data.skills %}
+                                    <li class="tag">{{skill.name}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                           <select name="skills" class="form-control tags"  multiple="multiple">
+                           </select>
+                    </div>
+
+
+                    <input class="btn btn-actions" type="submit" value="Update">
+                </form>
+
+        </div>
+    </div>
+
+	</div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "signed_in_base.html" %}
+
+
+
+
+{% block content %}
+
+    <div class="container" style="margin-bottom: 100px;">
+        <div class="col-xs-8">
+
+        {% if notifications %}
+
+                {% for noti in notifications %}
+
+
+                    <div class="app-project-list-item" >
+                          <span style="color: #54CC7D;">{{ noti.created_at | date }}</span>
+
+                        <div style="font-weight: 900">
+                            {{ noti.message }}
+                        </div>
+
+                        <div >
+                            <a href="{{ noti.action_url }}">{{noti.extra.project.title}}</a>
+                            <a href="{% url 'user_profile' noti.extra.offer_by.username %}" style="font-family: exo;color: #081a5e;font-weight: bolder">
+                            {{ noti.extra.offer_by.username }}
+                            </a>
+
+                        </div>
+
+                         {# receive offer notification#}
+                         {% if noti.type == 200  %}
+
+                            <div style="text-align: center">
+                                {% if noti.extra.is_seen %}
+                                     {% if noti.extra.is_accepted %}
+                                         <span style="color: #1784fb;">ACCEPTED</span>
+                                     {% else %}
+                                         <span style="color: #fb4f59">REJECTED</span>
+                                     {% endif %}
+                                 {% else %}
+                                     <a href="#"  class="btn btn-danger btn-reject-offer"  data-offer-id="{{ noti.extra.id }}">Reject</a>
+                                     <a href="#"  class="btn btn-info btn-accept-offer" data-offer-id="{{ noti.extra.id }}">Accept</a>
+                                 {% endif %}
+
+                            </div>
+
+                         {% endif %}
+
+
+
+                    </div>
+                {% endfor %}
+
+        {% else %}
+
+            <div>You have no notifications!</div>
+
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

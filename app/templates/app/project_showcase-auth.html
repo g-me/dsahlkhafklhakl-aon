@@ -1,0 +1,128 @@
+{% extends "signed_in_base.html" %}
+
+
+{% block content %}
+
+<div class="container">
+     <!-- TESTIMONIALS-->
+		<div class="fh5co-blog-style-1">
+			<div class="container">
+				<div class="row p-b">
+					<div class="col-md-6 col-md-offset-3 text-center">
+						<h2 class="fh5co-heading wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Project Showcases</h2>
+						<p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">Browse all types of projects! </p>
+					</div>
+
+				</div>
+
+				<div class="row p-b">
+
+                    <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12">
+                            <div class="fh5co-post wow fadeInLeft"  data-wow-duration="1s" data-wow-delay="1.1s">
+                                <div class="fh5co-post-image" style="height: 160px;">
+                                    <div class="fh5co-overlay" ></div>
+                                    <div class="fh5co-category"><a href="{% url 'explore_filter' 'mobile' %}">Mobile</a></div>
+                                    <img src="{{ STATIC_URL }}/static/app/images/writing_background.png"  alt="Image" >
+                                </div>
+                                <div class="fh5co-post-text">
+                                    <h3><a href="{% url 'explore_filter' 'mobile' %}">Mobile App Projects</a></h3>
+								    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts...</p>
+                                </div>
+                                <div class="fh5co-post-meta">
+                                    <a href="#"><i class="icon-book2"></i>25 Projects</a>
+                                    <a href="#"><i class="icon-user"></i>12 Users</a>
+                                </div>
+                            </div>
+                    </div>
+
+                	<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="fh5co-post wow fadeInLeft"  data-wow-duration="1s" data-wow-delay="1.4s">
+							<div class="fh5co-post-image" style="height: 160px;">
+								<div class="fh5co-overlay"></div>
+								<div class="fh5co-category"><a href="{% url 'explore_filter' 'websites-it-and-software' %}">Websites IT and Software</a></div>
+								<img src="{{ STATIC_URL }}/static/app/images/it_and_software_background.png" alt="Image" class="img-responsive">
+							</div>
+							<div class="fh5co-post-text">
+								<h3><a href="#">Websites IT and Software</a></h3>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts...</p>
+							</div>
+							<div class="fh5co-post-meta">
+                                <div class="fh5co-post-meta">
+                                    <a href="#"><i class="icon-book2"></i>20 Projects</a>
+                                    <a href="#"><i class="icon-user"></i>8 Users</a>
+                                </div>
+							</div>
+						</div>
+					</div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="fh5co-post wow fadeInLeft"  data-wow-duration="1s" data-wow-delay="1.7s">
+							<div class="fh5co-post-image" style="height: 160px;">
+								<div class="fh5co-overlay" style="height: 190px"></div>
+								<div class="fh5co-category"><a href="{% url 'explore_filter' 'graphics-design' %}">Graphics Design</a></div>
+								<img src="{{ STATIC_URL }}/static/app/images/graphics_design_background.jpg" alt="Image" class="img-responsive">
+							</div>
+							<div class="fh5co-post-text">
+								<h3><a href="#">Graphics Design</a></h3>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts...</p>
+							</div>
+							<div class="fh5co-post-meta">
+                                 <div class="fh5co-post-meta">
+                                    <a href="#"><i class="icon-book2"></i>15 Projects</a>
+                                    <a href="#"><i class="icon-user"></i>12 Users</a>
+                                </div>
+							</div>
+						</div>
+					</div>
+
+                     <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="fh5co-post wow fadeInLeft"  data-wow-duration="1s" data-wow-delay="1.7s">
+							<div class="fh5co-post-image" style="height: 160px;">
+								<div class="fh5co-overlay" style="height: 190px"></div>
+								<div class="fh5co-category"><a href="{% url 'explore_filter' 'writing' %}">Writing</a></div>
+								<img src="{{ STATIC_URL }}/static/app/images/graphics_design_background.jpg" alt="Image" class="img-responsive">
+							</div>
+							<div class="fh5co-post-text">
+								<h3><a href="#">Writing</a></h3>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts...</p>
+							</div>
+							<div class="fh5co-post-meta">
+                                 <div class="fh5co-post-meta">
+                                    <a href="#"><i class="icon-book2"></i>15 Projects</a>
+                                    <a href="#"><i class="icon-user"></i>12 Users</a>
+                                </div>
+							</div>
+						</div>
+					</div>
+
+                     <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12">
+						<div class="fh5co-post wow fadeInLeft"  data-wow-duration="1s" data-wow-delay="1.7s">
+							<div class="fh5co-post-image" style="height: 160px;">
+								<div class="fh5co-overlay" style="height: 190px"></div>
+								<div class="fh5co-category"><a href="{% url 'explore_filter' 'data-entry' %}">Data Entry</a></div>
+								<img src="{{ STATIC_URL }}/static/app/images/graphics_design_background.jpg" alt="Image" class="img-responsive">
+							</div>
+							<div class="fh5co-post-text">
+								<h3><a href="#">Data Entry</a></h3>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts...</p>
+							</div>
+							<div class="fh5co-post-meta">
+                                 <div class="fh5co-post-meta">
+                                    <a href="#"><i class="icon-book2"></i>15 Projects</a>
+                                    <a href="#"><i class="icon-user"></i>12 Users</a>
+                                </div>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+
+			</div>
+		</div>
+
+</div>
+
+
+{% endblock %}

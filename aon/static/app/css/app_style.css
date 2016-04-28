@@ -1,0 +1,343 @@
+.page-wrap {
+    min-height: 100%;
+}
+
+
+.membership-icon{
+ color:#40465E ;
+}
+
+#login-password:focus , #login-username:focus,#login-email:focus{
+    border: solid 0.5px #40465E ;
+}
+
+#login-password, #login-username,#login-email{
+    color: #40465E ;
+    font-size: 16px;
+     /*TODO this cases some bug on mozila fix it or let it be ugly ...*/
+    /**padding: 22px 15px;*/
+}
+
+#login-background{
+    background-image: url(/aon/static/app/images/full_1.jpg)
+}
+
+.membership-logo{
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    margin: 5px;
+    color: #FFF;
+    
+}
+.membership-logo:focus{
+    background-color: #FFF;
+}
+
+.user_initial{
+    margin-top: 3px;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 25px;
+    text-align: center;
+    border-radius:50%;
+    width:50px;
+    height: 50px;
+}
+
+.errorlist{
+    color: red;
+    list-style: none;
+}
+
+.success{
+    list-style: none;
+    padding: 20px;
+    color: #fff;
+    font-size:25px ;
+    text-align: center;
+    background: #3ed187;
+}
+
+.info{
+    list-style: none;
+    padding: 20px;
+    color: #fff;
+    font-size:25px ;
+    text-align: center;
+    background: #12b7e3;
+}
+
+.tag{
+    font-size: 10px;
+    padding: 2px 10px;
+    line-height: 1.5;
+    font-family: "Open Sans", Arial, sans-serif;
+    text-transform: uppercase;
+    color: #FFF;
+    margin: 0 4px 4px 0;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom: 1;
+    background:#40465E;
+
+}
+.profile_skill_tag{
+    font-size: 14px;
+    padding: 4px 6px;
+    margin-left: 15px;
+    line-height: 1.5;
+    font-family: "Open Sans", Arial, sans-serif;
+    color: #FFF;
+    border-radius: 12px;
+    min-width: 100px;
+    background:#40465E;
+    margin-bottom: 8px;
+    text-align: center;
+    display: inline-block;
+
+}
+
+
+.project-detail-bottom{
+    margin: 10px;
+    border: 1px solid #0477f4;
+    padding: 10px;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px;
+  margin: 5px;
+  border-radius: 7px;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-usertitle-job {
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #40465E;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #40465E;
+  background-color: #f6f9fb;
+  border-left: 2px solid #40465E;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+
+@font-face {
+        font-family: "exo";
+        src: url(../fonts/Exo-Thin.otf);
+}
+@font-face {
+        font-family: "exo-light";
+        src: url(../fonts/Exo-ExtraLight.otf);
+}
+.dashboard-project-title{
+    font-size: 30px;
+    color: #40465E;
+    font-family: exo ;
+}
+.profile_social_net_btn{
+    border: 2px solid #40465E;
+    padding: 6px;
+    width: 200px;
+    height: 40px;
+    border-radius: 7px;
+    color: #FFF;
+}
+.profile_social_btn{
+ margin-bottom: 10px;
+}
+
+.app_panel_heading{
+    background-color: #E5E6E7;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #D2D3D5;
+}
+.app_panel{
+    background: #F8F8F8;
+    padding: 0px;
+    margin-bottom: 25px;
+    border: 1px solid #D2D3D5;
+}
+
+.profile_badge{
+    display: inline-block;
+    padding: 1px 6px;
+    font-size: 30px;
+    color: #FFF;
+    text-align: center;
+    background-color: #1784fb;
+    border-radius: 4px;
+}
+
+.ntag{
+    padding: 0px 6px;
+    border-radius: 5px;
+    /*background:#40465E;*/
+    /*color: #FFF;*/
+    text-align: center;
+    display: inline-block;
+    /*width: 100px;*/
+    margin-bottom: 10px;
+
+
+}
+
+
+.brand-nav a , span{
+    color: #FFF;
+}
+.brand-nav a:hover , span:hover{
+    color: #1784fb;
+}
+.navbar-inverse .navbar-nav>li>a{
+    color: #FFF;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+    color: #1784fb;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #40465E;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice span:hover {
+    color: #FFF;
+}
+
+.result_select_btn{
+	  content: "\2714";
+	  background: #C2C2C2;
+	  padding:4px 8px;
+	  font-size:20px;
+	  border-radius: 15px;
+	  margin-bottom:15px;
+      float: right;
+
+}
+
+.result_select_btn:hover{
+    color:#FFF;
+    background:green;
+
+	/*border: 2px solid black;*/
+}
+.title{
+  margin-top:  10px;
+}
+
+
+.date_time{
+    color: black;
+}
+
+.error{
+    color: #ff7974;
+    font-family: exo;
+}
+
+.profile_badge_text{
+    font-size: 14px;
+}
+
+
+.btn-info {
+    background: #40465E;
+    color: #fff;
+    border: 2px solid #40465E;
+}
+.btn-info:hover,.btn-info:active,.btn-info:focus{
+    background: #40465E !important;
+    border-color: #40465E !important;
+}
+
+.app-link{
+    font-size: 20px;
+    color: #40465E;
+    font-family: exo-light;
+}
+.app-project-list-item{
+    margin-top:12px;
+    padding:6px 20px;
+    border-radius: 4px;
+    background-color: rgba(128, 128, 128, 0.28)
+}

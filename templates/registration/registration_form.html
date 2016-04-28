@@ -1,0 +1,69 @@
+{% extends "registration/registration_base.html" %}
+{% block content %}
+<div class="container ">
+
+    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-5 col-md-offset-4 col-sm-8 col-sm-offset-2">
+
+        <div class="panel" style="border-radius:8px" >
+
+            <div class="panel-heading" style="text-align:center;">
+                <h3 style="color:#40465E">Create An Account</h3>
+                    {{ form.non_field_errors }}
+
+            </div>
+
+            <div style="padding-top:30px" class="panel-body" >
+
+                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+
+                <form id="loginform" class="form-horizontal" role="form" method="post">
+                                {% csrf_token %}
+
+                        {{ form.username.errors }}
+                        <div  style="margin-bottom: 25px" class="input-group col-md-10 col-md-offset-1">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user membership-icon"></i></span>
+                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username">
+                        </div>
+
+                        {{ form.email.errors }}
+                        <div  style="margin-bottom: 25px" class="input-group col-md-10 col-md-offset-1">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope membership-icon"></i></span>
+                            <input id="login-email" type="text" class="form-control" name="email" value="" placeholder="email">
+                        </div>
+
+                            {{ form.password1.errors }}
+                        <div style="margin-bottom: 25px" class="input-group col-md-10 col-md-offset-1">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock membership-icon"></i></span>
+                            <input id="login-password" type="password" class="form-control" name="password1" placeholder="password">
+                        </div>
+
+                            {{ form.password2.errors }}
+                        <div style="margin-bottom: 25px" class="input-group col-md-10 col-md-offset-1">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock membership-icon"></i></span>
+                            <input id="login-password" type="password" class="form-control" name="password2" placeholder="confirm password">
+                        </div>
+
+
+                        <div style="margin-top:10px" class="form-group">
+
+                            <div class="col-sm-12 controls col-md-10 col-md-offset-1">
+                                <button class=" btn-membership btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
+                            </div>
+                        </div>
+
+            </form>
+            </div>
+
+            <div class="panel-footer" style="border-bottom-right-radius: 8px;border-bottom-left-radius: 8px;">
+                <div style="padding:15px;" >
+                    <span style="color: #878797">have an account?</span><a href="{% url 'auth_login' %}" style="color:#40465E;padding-left: 5px">login  </a>
+                    <a href="{% url 'auth_password_reset' %}" style="float:right;">Forgot password?</a>
+                </div>
+            </div>
+
+         </div>
+    </div>
+</div>
+
+{% endblock %}

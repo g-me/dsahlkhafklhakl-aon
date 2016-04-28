@@ -1,0 +1,33 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static "app/vendor/bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "app/css/style.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "app/css/app_style.css" %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'app/vendor/jquery.js' %}"></script>
+    <script src="{% static 'app/js/app.js' %}"></script>
+    <script src="{% static 'app/vendor/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+    <div class="container main">
+
+        {% include 'header.html' %}
+
+        <div class="row  container" style="margin-top: 100px">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+
+</body>
+</html>

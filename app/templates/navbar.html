@@ -1,0 +1,140 @@
+<!-- NEW PROJECT MODAL-->
+<div id="new_project_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+       <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">New Request</h4>
+          </div>
+
+          <div class="modal-body">
+
+               <form  style="margin-bottom: 35px" role="form" method="post" action="#">
+
+                   {% csrf_token %}
+
+                    <div>
+                        <input style="font-size: 20px;height: 50px;font-family: exo;font-weight:900" id="id_title" class="form-control" maxlength="200" name="quick_request_title" placeholder="I'm Requesting" type="text"><br>
+                    </div>
+
+                   <div style="margin-bottom: 25px;">
+                        <select class="form-control" id="id_type" name="quick_request_category">
+                                <option selected="" value="-1">Category of work</option>
+                                <option value="websites-it-and-software">Websites IT &amp; Software</option>
+                                <option value="mobile">Mobile</option>
+                                <option value="writing">Writing</option>
+                                <option value="graphics-design">Graphics Design</option>
+                                <option value="data-entry">Data Entry</option>
+                        </select>
+                     </div>
+
+                    <a data-toggle="collapse" data-parent="#accordion" href="#DetailsAccordion">
+                        <i class="icon icon-angle-down"></i>
+                        With Details
+                    </a>
+
+                    <div id="detailAccordion">
+
+                        <div id="DetailsAccordion" class="collapse">
+
+                            <div class="">
+                                <label class="control-label" for="id_description">Description</label>
+                                <textarea class="form-control" cols="40" id="id_description" name="quick_request_description" rows="10"></textarea>
+                            </div>
+
+                             <div style="margin-top: 25px;margin-bottom: 25px;" >
+                                <select style="width: 100%;" name="qucik_request_skills" class="form-control tags"  multiple="multiple">
+                                </select>
+                             </div>
+                        </div>
+
+
+                      </div>
+
+                    <input style="padding: 8px 8px;margin-top: 15px;" class="btn btn-info" type="submit" value="Post Request" id="post-request">
+
+                </form>
+          </div>
+
+       </div>
+    </div>
+</div>
+<!-- END NEW PROJECT MODAL-->
+
+
+<nav class="navbar navbar-default navbar-inverse brand-nav" role="navigation" style="background-color: #343B55;">
+  <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'dashboard' %}"><span style="border-radius: 7px;font-size: 30px; padding: 7px 15px;position: relative;top: 5px; background: rgba(255, 255, 255, 0.1);">A</span></a>
+    </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+              <form  class="col-md-5 col-sm-5" style="padding: 10px" role="search" method="get" action="{% url 'search' %}">
+                  <div class="">
+                      <input id="global_search" type="text" name="q"  class="form-control" placeholder="Search Aon">
+                  </div>
+              </form>
+
+               <ul class="nav navbar-nav">
+                    <li><a href="{% url 'explore' %}">Explore</a></li>
+               </ul>
+
+               <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <p class="navbar-text" style="margin-top: 10px;">
+                        <span>
+                            <a href="{% url 'notifications' %}">
+                                <i class="glyphicon glyphicon-bell" style="font-size:25px;"></i>
+                            </a>
+                        </span>
+
+                         {% if num_notifications > 0 %}
+                             <span class="badge" style="position:relative;bottom:20px;right:5px;">{{ num_notifications }}</span></p>
+
+                         {% endif %}
+                    </li>
+
+                  <li>
+                        <p class="navbar-text" style="margin-top: 10px;">
+                            <span>
+                                <a href="" data-toggle="modal" data-target="#new_project_modal">
+                                    <i class="glyphicon glyphicon-plus" style="font-size:25px;">
+                                    </i>
+                                </a>
+                            </span>
+                        </p>
+                    </li>
+                  <li>
+                      <a href="{% url 'user_profile' user.username %}"  class="user_initial" >
+                               {{ user.username| first | capfirst}}
+                      </a>
+                  </li>
+
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+
+                       <ul id="login-dp" class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'user_profile' user.username %}" >Profile</a>
+                           </li>
+                            <li>
+                                <a href="#" >Settings</a>
+                           </li>
+                            <li>
+                            <a href="{% url 'auth_logout' %}?next=/" >Log out</a>
+                           </li>
+                        </ul>
+                    </li>
+              </ul>
+        </div>
+  </div>
+
+</nav>

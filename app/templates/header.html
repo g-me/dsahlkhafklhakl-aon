@@ -1,0 +1,61 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+          <ul class="nav nav-pills" >
+                    {% if user.is_authenticated %}
+                            <li role="presentation"  ><a href="{% url 'dashboard' %}">Home</a></li>
+                            <li role="presentation"><a href="{% url 'user_profile' user.username %}">Profile</a></li>
+                            <li role="presentation">
+                              <a href="{% url 'notifications' %}">
+                                  <span class="glyphicon glyphicon-bell" style="color: #FFF;"></span>
+                                   Notifications
+                                    {% if num_notifications > 0 %}
+                                        <span class="badge">{{ num_notifications }}</span>
+                                    {% endif %}
+
+                                </a>
+                          </li>
+                            <li role="presentation" ><a href="{% url 'user_requests' user.username %}" > My Projects</a></li>
+                            <li role="presentation" ><a href="{% url 'auth_logout' %}?next=/">Logout</a></li>
+                    {% else %}
+                        <li role="presentation"  ><a href="/">Home</a></li>
+                        <li  role="presentation" ><a href="{% url 'projects' %}">Projects</a></li>
+                        <li role="presentation" ><a href="{% url 'registration_register' %}" >Sign up</a></li>
+                        <li role="presentation" >  <a href="{% url 'auth_login' %}" > Log in</a></li>
+                    {% endif %}
+                </ul>
+
+    </div>
+</div>
+
+
+<div id="new_project_modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                   <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">New Request</h4>
+                      </div>
+
+                      <div class="modal-body">
+                         <form class="form-horizontal" style="margin: 30px" role="form" method="post" action="{% url 'dashboard' %}">
+                                     {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="id_title">Title</label>
+                                        <input id="id_title" class="form-control" maxlength="200" name="title" type="text"><br>
+                                    </div>
+
+                                <input class="btn btn-info" type="submit" value="Post Project">
+                            </form>
+
+                          <a href="{% url 'create_project' %}">Create Detail Request</a>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+
+                   </div>
+                </div>
+        </div>
+

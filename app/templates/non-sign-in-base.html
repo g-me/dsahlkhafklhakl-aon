@@ -1,0 +1,76 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href="{% static "app/vendor/bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "app/css/style.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "app/css/app_style.css" %}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{% static "app/css/animate.css" %}">
+	<link rel="stylesheet" href="{% static "app/css/icomoon.css" %}">
+	<link rel="stylesheet" href="{% static "app/css/magnific-popup.css" %}">
+	<link rel="stylesheet" href="{% static "app/css/owl.carousel.min.css" %}">
+	<link rel="stylesheet" href="{% static "app/css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "app/css/cards.css" %}">
+
+    <script src="{% static 'app/js/modernizr-2.6.2.min.js' %}"></script>
+</head>
+<body>
+
+  <nav class="fh5co-nav-style-1" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
+            <div class="container">
+
+                    <a href="{% url 'index' %}" class="membership-logo">AON</a>
+            </div>
+    </nav>
+
+
+	<div id="fh5co-page">
+		        <div class="fh5co-cover fh5co-cover-style-2 js-full-height" data-stellar-background-ratio="0.5" data-next="yes"  style="background-image: url('{{ STATIC_URL }}/static/app/images/full_1.jpg');" >
+
+                    <div class="fh5co-overlay"></div>
+
+                    <div class="fh5co-cover-text">
+				         <div class="container">
+					        <div class="row">
+						        <div class="col-md-push-6 col-md-6 full-height js-full-height" style="left:0%;">
+                                    <div class="page-wrap gradient-primary" style="padding-top:100px;">
+
+
+                            {% block content %}
+
+                            {% endblock %}
+
+
+                                 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    {% include 'footer.html' %}
+
+
+    <script src="{% static 'app/js/app.js' %}"></script>
+	<script src="{% static 'app/js/jquery.min.js'  %}"></script>
+	<script src="{% static 'app/js/jquery.easing.1.3.js'  %}"></script>
+	<script src="{% static 'app/js/bootstrap.min.js'  %}"></script>
+    <script src="{% static 'app/js/jquery.waypoints.min.js'  %}"></script>
+	<script src="{% static 'app/js/owl.carousel.min.js'  %}"></script>
+	<script src="{% static 'app/js/jquery.magnific-popup.min.js'  %}"></script>
+	<script src="{% static 'app/js/jquery.stellar.min.js'  %}"></script>
+	<script src="{% static 'app/js/jquery.countTo.js'  %}"></script>
+	<script src="{% static 'app/js/wow.min.js'  %}"></script>
+	<script src="{% static 'app/js/main.js'  %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="panel">
+        <div class="panel-heading">
+            <h2>Explore {{ category }} Projects</h2>
+        </div>
+    </div>
+    <div class="col-xs-8">
+
+    {% if projects %}
+    {% for project in projects %}
+        <div class="panel">
+
+        <div class="app-project-list-item">
+
+               <a class="dashboard-project-title" href="{% url 'project_detail' project.slug %}"> {{ project.title }}</a>
+
+               <div>
+                   {{ project.created |date }}
+                   {% load app_tags_filters %}
+                   <span class="tag" style="color: #FFF;float: right">{{project.status | display_status }}</span>
+               </div>
+
+
+
+        </div>
+
+        </div>
+    {% endfor %}
+
+    {% endif %}
+
+</div>
+
+</div>
+
+

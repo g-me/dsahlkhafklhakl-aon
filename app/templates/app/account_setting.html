@@ -1,0 +1,42 @@
+{% extends "signed_in_base.html" %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row" style="margin-bottom: 25px;">
+
+		<div class="col-sm-8">
+
+                <form action="{% url 'edit_account' %}" method="POST">
+                    {% csrf_token %}
+                    User Name
+                    <div class="form-group">
+                        <input value="{{ user.username }}" placeholder="Username" name="username" type="text" class="form-control">
+                    </div>
+                    First Name
+                    <div class="form-group">
+                        <input value="{{ user.first_name }}" placeholder="First Name" name="first_name" type="text" class="form-control">
+                    </div>
+                    Last Name
+                    <div class="form-group">
+                        <input value="{{ user.last_name }}" placeholder="Last Name" name="last_name" type="text" class="form-control">
+                    </div>
+                    Email
+                    <div class="form-group">
+                        <input value="{{ user.email }}" placeholder="email" name="email" type="text" class="form-control">
+                    </div>
+
+
+                    <input class="btn btn-actions" type="submit" value="Update">
+                </form>
+
+        </div>
+    </div>
+
+	</div>
+
+</div>
+
+
+{% endblock %}
