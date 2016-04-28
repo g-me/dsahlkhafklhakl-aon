@@ -74,35 +74,43 @@ def detail_view(request, slug):
     ratings = Rating.objects.filter(project=project)
 
     if request.user.is_authenticated():
-        template='app/details.html'
+        template = 'app/details.html'
         num_notifications = get_notifications(request)
         return render(request=request, template_name=template,
-                  context={'project': project, 'num_notifications': num_notifications, 'ratings': ratings})
+                      context={'project': project, 'num_notifications': num_notifications, 'ratings': ratings})
 
     else:
-        template='app/project_detail.html'
+        template = 'app/project_detail.html'
         return render(request=request, template_name=template,
-                  context={'project': project,})
-
-
-
-
+                      context={'project': project, })
 
 
 # @login_required()
 def explore(request):
     # TODO: count project and users on each category for statistics
-    # mobile_projects=Request.objects.filter(type=RequestCategory(name='mobile')).count()
-    # catagory_stastics={'mobile':[12,5],'writing':[12,5],'data-entry':[12,5],'mobile':[12,5],'mobile':[12,5]}
+    mobile_projects = Request.objects.filter(type=RequestCategory.objects.get(slug='mobile')).count()
+    software_and_it_projects = Request.objects.filter(type=RequestCategory.objects.get(slug='websites-it-and-software')).count()
+    writing_projects = Request.objects.filter(type=RequestCategory.objects.get(slug='writing')).count()
+    data_enty_projects = Request.objects.filter(type=RequestCategory.objects.get(slug='data-entry')).count()
+    graphics_design_projects = Request.objects.filter(type=RequestCategory.objects.get(slug='graphics-design')).count()
+
+    projects_stastics = {'mobile_projects': mobile_projects,
+                         'software_and_it_projects': software_and_it_projects,
+                         'writing_projects': writing_projects,
+                         'data_enty_projects': data_enty_projects,
+                         'graphics_design_projects': graphics_design_projects
+                         }
+
+    print("Stat:" +str(projects_stastics))
 
     if request.user.is_authenticated():
-        template='app/project_showcase-auth.html'
+        template = 'app/project_showcase-auth.html'
 
     else:
-        template='app/project_showcase.html'
+        template = 'app/project_showcase.html'
 
     result_projects = Request.objects.all()
-    return render(request=request, template_name=template, context={'projects': result_projects})
+    return render(request=request, template_name=template, context={'projects': result_projects,'statstics':projects_stastics})
 
 
 @login_required()
@@ -230,14 +238,12 @@ def get_notifications(request):
 # ------------------------------------------------------------------
 @login_required()
 def offer(request, slug):
-
-
     project = get_object_or_404(Request, slug=slug)
     offered_by = request.user
 
     # todo validations
     # can't offer my own project
-    if(offered_by==project.created_by):
+    if (offered_by == project.created_by):
         # messages.add_message(request, messages.INFO, 'Hmmm this is your project!')
         return HttpResponseRedirect("/projects/" + str(slug) + "/")
 
@@ -378,6 +384,7 @@ def dashboard(request):
     return render(request=request, template_name='app/dashboard.html',
                   context={'suggestions': suggestions, 'my_projects': my_projects,
                            'num_notifications': num_notifications, 'projects_working_on': working_on})
+
 
 @login_required()
 def users_profile_view(request, user_name):
@@ -623,10 +630,10 @@ def filter_projects(request, category_name):
     result_projects = Request.objects.filter(type=catagory)
 
     if request.user.is_authenticated():
-        template='app/explore_auth.html'
+        template = 'app/explore_auth.html'
 
     else:
-        template='app/explore.html'
+        template = 'app/explore.html'
 
     return render(request=request, template_name=template,
                   context={'projects': result_projects, 'category': catagory.name})
